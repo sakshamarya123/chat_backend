@@ -1,0 +1,84 @@
+# Chat Backend
+
+A backend application for a real-time chat system built using **Node.js, TypeScript, Express.js, PostgreSQL, Prisma ORM, and Firebase Firestore**.
+
+## Features
+
+- Create one-to-one conversations between users.
+- Send messages and store them in Firebase Firestore.
+- Retrieve chat messages with chronological ordering and pagination.
+- Mark messages as read.
+- Track the last-seen message for each user.
+- Retrieve all conversations associated with a user.
+- Prevent duplicate one-to-one conversations.
+
+## Tech Stack
+
+- **Runtime:** Node.js
+- **Language:** TypeScript
+- **Framework:** Express.js
+- **Relational Database:** PostgreSQL
+- **ORM:** Prisma
+- **Message Storage:** Firebase Firestore
+- **Validation:** Zod
+
+## Architecture
+
+- PostgreSQL stores users, chats, and chat memberships.
+- Firebase Firestore stores messages, read receipts, and last-seen information.
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/chat/create` | Create or retrieve a one-to-one chat |
+| POST | `/chat/:chatId/message/send` | Send a message |
+| GET | `/chat/:chatId/messages` | Retrieve chat messages |
+| POST | `/chat/:chatId/message/:messageId/read` | Mark a message as read |
+| POST | `/chat/:chatId/lastseen` | Update last-seen information |
+| GET | `/user/:userId/chats` | Retrieve a user's chats |
+
+## Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone YOUR_REPOSITORY_URL
+cd chat-backend
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure environment variables
+
+Create a `.env` file using `.env.example` as a reference.
+
+Add your PostgreSQL connection string and Firebase credentials.
+
+### 4. Generate Prisma Client
+
+```bash
+npx prisma generate
+```
+
+### 5. Run database migrations
+
+```bash
+npx prisma migrate deploy
+```
+
+### 6. Start the development server
+
+```bash
+npm run dev
+```
+
+The server will run on the configured port.
+
+## License
+
+This project is open source and available under the MIT License.
